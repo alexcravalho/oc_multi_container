@@ -1,17 +1,32 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
-export async function getStaticProps(context) {
-  const res = await fetch(process.env.EXPRESS_URL);
-  const favColor = await res.json();
+// cannot use getStaticProps if api doesnt even exist at build time
+// export async function getStaticProps(context) {
+//   const res = await fetch(process.env.EXPRESS_URL);
+//   const favColor = await res.json();
 
-  return {
-    props: { favColor },
-  };
-}
+//   return {
+//     props: { favColor },
+//   };
+// }
 
-export default function Home({ favColor }) {
+export default function Home() {
+  const [favColor, setFavColor] = useState('...');
+
+  useEffect(() => {
+    const getFavColor = async () => {
+      const res = await fetch(process.env.EXPRESS_URL);
+      console.log(res);
+      const favColor = await res.json();
+      setFavColor(favColor);
+    };
+
+    getFavColor();
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
