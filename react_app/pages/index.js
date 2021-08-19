@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     const getFavColor = async () => {
       const res = await fetch(
-        `${process.env.EXPRESS_SERVICE_HOST}:${process.env.EXPRESS_SERVICE_PORT}`
+        `${process.env.EXPRESS_SERVICE_HOST}:${process.env.EXPRESS_SERVICE_PORT}/test`
       );
       console.log(res);
       const favColor = await res.json();
