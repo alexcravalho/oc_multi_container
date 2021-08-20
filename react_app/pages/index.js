@@ -4,16 +4,16 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 // cannot use getStaticProps if api doesnt even exist at build time
-// export async function getStaticProps(context) {
-//   const res = await fetch(process.env.EXPRESS_URL);
-//   const favColor = await res.json();
+export async function getServerSideProps(context) {
 
-//   return {
-//     props: { favColor },
-//   };
-// }
+  return {
+    props: { test: process.env.EXPRESS_URL,
+             test2: process.env.NEXT_PUBLIC_EXPRESS_SERVICE_HOST
+           }
+  };
+}
 
-export default function Home() {
+export default function Home({test, test2}) {
   const [favColor, setFavColor] = useState('...');
 
   useEffect(() => {
@@ -22,6 +22,8 @@ export default function Home() {
       const res = await fetch(URL);
       console.log("URL is: " + URL);
       console.log(res);
+      console.log(test);
+      console.log(test2);
       const favColor = await res.json();
       setFavColor(favColor);
     };
