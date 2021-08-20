@@ -4,6 +4,8 @@ export default function handler(req, res) {
     EXPRESS_URL2: process.env.EXPRESS_URL2,
     EXPRESS_SERVICE_PORT: process.env.EXPRESS_SERVICE_PORT,
     EXPRESS_SERVICE_HOST: process.env.EXPRESS_SERVICE_HOST,
+    NEXT_PUBLIC_EXPRESS_SERVICE_PORT: process.env.EXPRESS_SERVICE_PORT,
+    NEXT_PUBLIC_EXPRESS_SERVICE_HOST: process.env.EXPRESS_SERVICE_HOST
   };
 
   res.status(200).json(theEnvs);
